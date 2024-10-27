@@ -16,14 +16,14 @@ async def get_account(client: Client, message: Message):
     # Check if user has enough coins to claim an account
     if user_info['coins'] < 20:
         await message.reply_text(
-            "💰 You need at least 20 coins to claim a premium account. "
-            f"Currently, you have {user_info['coins']} coins."
+            "💰 𝚈𝚘𝚞 𝚗𝚎𝚎𝚍 𝚊𝚝 𝚕𝚎𝚊𝚜𝚝 20 𝚌𝚘𝚒𝚗𝚜 𝚝𝚘 𝚌𝚕𝚊𝚒𝚖 𝚊 𝚙𝚛𝚎𝚖𝚒𝚞𝚖 𝚊𝚌𝚌𝚘𝚞𝚗𝚝."
+            f"𝙲𝚞𝚛𝚛𝚎𝚗𝚝𝚕𝚢, 𝚢𝚘𝚞 𝚑𝚊𝚟𝚎 {user_info['coins']} 𝚌𝚘𝚒𝚗𝚜."
         )
         return
 
     # Check if there are available premium accounts
     if not premium_accounts:
-        await message.reply_text("🚫 Sorry, no premium accounts are available right now.")
+        await message.reply_text("🚫 𝚂𝚘𝚛𝚛𝚢, 𝚗𝚘 𝚙𝚛𝚎𝚖𝚒𝚞𝚖 𝚊𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚊𝚛𝚎 𝚊𝚟𝚊𝚒𝚕𝚊𝚋𝚕𝚎 𝚛𝚒𝚐𝚑𝚝 𝚗𝚘𝚠.")
         return
 
     # Claim an account
@@ -35,4 +35,4 @@ async def get_account(client: Client, message: Message):
     # Save user data back (implement save logic as necessary)
     user_data[user_id] = user_info  
 
-    await message.reply_text(f"✅ Here is your premium account: {account}\nEnjoy! 🎉")
+    await message.reply_text(f"✅ 𝙷𝚎𝚛𝚎 𝚒𝚜 𝚢𝚘𝚞𝚛 𝚙𝚛𝚎𝚖𝚒𝚞𝚖 𝚊𝚌𝚌𝚘𝚞𝚗𝚝:\n {account}\n𝙴𝚗𝚓𝚘𝚢! 🎉")
