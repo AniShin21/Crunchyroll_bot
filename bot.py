@@ -1,6 +1,6 @@
 from pyrogram import Client
 from config import API_ID, API_HASH, BOT_TOKEN, TG_BOT_WORKERS  # Ensure all necessary imports
-
+from pyromod import listen
 class Bot(Client):
     def __init__(self):
         super().__init__(
