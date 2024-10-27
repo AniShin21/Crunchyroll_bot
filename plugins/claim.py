@@ -27,7 +27,7 @@ async def generate_codes(client: Client, message: Message):
         await message.reply_text(f"{num_codes} redeem code(s) generated!\n\n{codes_text}")
 
     except ValueError:
-        await message.reply_text("Please use the format: /gen <coins> <num_of_codes>.")
+        await message.reply_text("𝙿𝚕𝚎𝚊𝚜𝚎 𝚞𝚜𝚎 𝚝𝚑𝚎 𝚏𝚘𝚛𝚖𝚊𝚝: /𝚐𝚎𝚗 <𝚌𝚘𝚒𝚗𝚜> <𝚗𝚞𝚖_𝚘𝚏_𝚌𝚘𝚍𝚎𝚜>.")
 
 @Client.on_message(filters.command("redeem") & filters.private)
 async def redeem_code(client: Client, message: Message):
@@ -35,7 +35,7 @@ async def redeem_code(client: Client, message: Message):
     code = message.text.split(maxsplit=1)[1] if len(message.text.split()) > 1 else None
 
     if not code:
-        await message.reply_text("Please provide a code to redeem. Usage: /redeem <code>")
+        await message.reply_text("𝙿𝚕𝚎𝚊𝚜𝚎 𝚙𝚛𝚘𝚟𝚒𝚍𝚎 𝚊 𝚌𝚘𝚍𝚎 𝚝𝚘 𝚛𝚎𝚍𝚎𝚎𝚖. 𝚄𝚜𝚊𝚐𝚎: /𝚛𝚎𝚍𝚎𝚎𝚖 <𝚌𝚘𝚍𝚎>")
         return
 
     # Check if the code exists and hasn't been redeemed by this user
@@ -44,7 +44,7 @@ async def redeem_code(client: Client, message: Message):
 
         # Check if the user has already redeemed this code
         if user_id in code_info['claimed_by']:
-            await message.reply_text("You've already redeemed this code.")
+            await message.reply_text("𝚈𝚘𝚞'𝚟𝚎 𝚊𝚕𝚛𝚎𝚊𝚍𝚢 𝚛𝚎𝚍𝚎𝚎𝚖𝚎𝚍 𝚝𝚑𝚒𝚜 𝚌𝚘𝚍𝚎.")
             return
 
         # Award coins and update user data
@@ -53,6 +53,6 @@ async def redeem_code(client: Client, message: Message):
 
         # Mark code as claimed by this user
         code_info['claimed_by'].append(user_id)
-        await message.reply_text(f"Success! You've received {code_info['coins']} coins. Your new balance is {user_data[user_id]['coins']} coins.")
+        await message.reply_text(f"𝚂𝚞𝚌𝚌𝚎𝚜𝚜! 𝚈𝚘𝚞'𝚟𝚎 𝚛𝚎𝚌𝚎𝚒𝚟𝚎𝚍 {code_info['coins']} 𝚌𝚘𝚒𝚗𝚜. 𝚈𝚘𝚞𝚛 𝚗𝚎𝚠 𝚋𝚊𝚕𝚊𝚗𝚌𝚎 𝚒𝚜 {user_data[user_id]['coins']} coins.")
     else:
-        await message.reply_text("Invalid code. Please check and try again.")
+        await message.reply_text("𝙸𝚗𝚟𝚊𝚕𝚒𝚍 𝚌𝚘𝚍𝚎. 𝙿𝚕𝚎𝚊𝚜𝚎 𝚌𝚑𝚎𝚌𝚔 𝚊𝚗𝚍 𝚝𝚛𝚢 𝚊𝚐𝚊𝚒𝚗.")
