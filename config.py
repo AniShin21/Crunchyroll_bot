@@ -14,4 +14,4 @@ except ValueError:
 
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 
-START_MSG = os.environ.get("START_MESSAGE", "Hᴇʟʟᴏ ᴛʜᴇʀᴇ {first}!\nɪ ᴀᴍ ᴀ ꜰɪʟᴇ ʙᴏᴛ\nᴘᴏᴡᴇʀᴇᴅ ʙʏ : @HKB_ANIME\nɪ ᴄᴀɴ ᴘʀᴏᴠɪᴅᴇ ᴘʀɪᴠᴀᴛᴇ ꜰɪʟᴇꜱ\nᴛʜʀᴏᴜɢʜ ᴛʜᴇ ꜱᴘᴇᴄɪᴀʟ ʟɪɴᴋꜱ ♡")
+START_MSG = os.environ.get("START_MESSAGE", "<b><i>Welcome, {first}{last}!\n 🍥 You've entered the Crunchyroll Premium Bot! Unlock Premium accounts with 20 points/coins. Join our channel below and stay connected for free points surprises from the bot owner. Start collecting and dive into endless anime streaming! 🎌✨📺</i></b>")
