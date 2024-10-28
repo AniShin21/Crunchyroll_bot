@@ -1,13 +1,13 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from accounts_store import user_data  # Import the user data store
+from pyrogram.enums import ParseMode
+from accounts_store import user_data, unban  # Import the user data store
 from database import get_leaderboard, full_userbase
 from config import ADMINS
 
 
-
 # Command to check user's balance
-@Client.on_message(filters.command('balance') & filters.private)
+@Client.on_message(filters.command('balance') & filters.private & unban)
 async def check_balance(client: Client, message: Message):
     user_id = message.from_user.id
     
@@ -25,7 +25,7 @@ async def check_balance(client: Client, message: Message):
 
 
 
-@Client.on_message(filters.command('leaderboard'))
+@Client.on_message(filters.command('leaderboard') & unban)
 async def show_leaderboard(client: Client, message: Message):
     """Display the leaderboard."""
     leaderboard = await get_leaderboard()  # Fetch the leaderboard data
@@ -67,14 +67,41 @@ async def get_leaderboard():
     return leaderboard
 
 ############______________USERS_________________####################
-WAIT_MSG = "Please Wait.."
-
-
 @Client.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
-async def get_users(client: Client, message: Message):
-    msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
-    users = await full_userbase()
-    await msg.edit(f"{len(users)} users are using this bot")
+async def list_users(client, message):
+    """Display the list of users."""
+    user_count = len(user_data)
+
+    # Create a message for the user list
+    user_list_message = "<b>Total Users:</b> <code>{}</code>\n\n".format(user_count)
+
+    # Check if there are users to display
+    if user_data:
+        for user_id, info in user_data.items():
+            # Fetch user details dynamically using the Telegram API
+            try:
+                user = await client.get_users(user_id)
+                user_first_name = user.first_name
+                user_last_name = user.last_name or ""  # Handle cases where the last name may be None
+
+                # Format the display of names
+                display_name = f"{user_first_name} {user_last_name}".strip()  # Strip any excess spaces
+
+                # Append to the user list message
+                user_list_message += f"User ID: <code>{user_id}</code> | Name: <b>{display_name}</b>\n"
+
+            except Exception:
+                # If user details cannot be fetched, fallback to 'Unknown User'
+                user_list_message += f"User ID: <code>{user_id}</code> | Name: <b>Unknown User</b>\n"
+
+        await message.reply_text(user_list_message)
+    else:
+        await message.reply_text("No users found.")
+
+
+
+
+
 
 
 
