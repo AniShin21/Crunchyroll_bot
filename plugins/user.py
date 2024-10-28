@@ -20,7 +20,7 @@ async def check_balance(client: Client, message: Message):
     user_balance = user_data[user_id]['coins']
     
     # Send the user their balance
-    await message.reply_text(f"💰 Your current balance is: {user_balance} coins.")
+    await message.reply_text(f"💰 𝚈𝚘𝚞𝚛 𝚌𝚞𝚛𝚛𝚎𝚗𝚝 𝚋𝚊𝚕𝚊𝚗𝚌𝚎 𝚒𝚜: {user_balance} 𝚌𝚘𝚒𝚗𝚜")
 
 
 
@@ -31,11 +31,11 @@ async def show_leaderboard(client: Client, message: Message):
     leaderboard = await get_leaderboard()  # Fetch the leaderboard data
 
     if not leaderboard:
-        await message.reply_text("No Data For Leaderboard")
+        await message.reply_text("𝙽𝚘 𝙳𝚊𝚝𝚊 𝙵𝚘𝚛 𝙻𝚎𝚊𝚍𝚎𝚛𝚋𝚘𝚊𝚛𝚍")
         return
 
     # Format the leaderboard message
-    leaderboard_message = "<b>Leaderboard:</b>\n\n"
+    leaderboard_message = "<b>𝙻𝚎𝚊𝚍𝚎𝚛𝚋𝚘𝚊𝚛𝚍:</b>\n\n"
     for rank, (user_id, data) in enumerate(leaderboard, start=1):
         coins = data.get('coins', 0)  # Retrieve the user's coins
         
@@ -73,7 +73,7 @@ async def list_users(client, message):
     user_count = len(user_data)
 
     # Create a message for the user list
-    user_list_message = "<b>Total Users:</b> <code>{}</code>\n\n".format(user_count)
+    user_list_message = "<b>𝚃𝚘𝚝𝚊𝚕 𝚄𝚜𝚎𝚛𝚜:</b> <code>{}</code>\n\n".format(user_count)
 
     # Check if there are users to display
     if user_data:
@@ -123,7 +123,7 @@ async def gift_coins(client: Client, message: Message):
 
         # Check if the sender has enough coins
         if user_data[user_id]['coins'] < coins_to_gift:
-            await message.reply_text(f"You don't have enough coins to gift. Your current balance is {user_data[user_id]['coins']} coins.")
+            await message.reply_text(f"𝚈𝚘𝚞 𝚍𝚘𝚗'𝚝 𝚑𝚊𝚟𝚎 𝚎𝚗𝚘𝚞𝚐𝚑 𝚌𝚘𝚒𝚗𝚜 𝚝𝚘 𝚐𝚒𝚏𝚝. 𝚈𝚘𝚞𝚛 𝚌𝚞𝚛𝚛𝚎𝚗𝚝 𝚋𝚊𝚕𝚊𝚗𝚌𝚎 𝚒𝚜 {user_data[user_id]['coins']} 𝚌𝚘𝚒𝚗𝚜.")
             return
 
         # Check if the recipient has an entry in user_data, if not, initialize it
@@ -135,18 +135,18 @@ async def gift_coins(client: Client, message: Message):
         user_data[recipient_id]['coins'] += coins_to_gift
 
         # Notify the sender and the recipient
-        await message.reply_text(f"Successfully gifted {coins_to_gift} coins to user {recipient_id}. Your new balance is {user_data[user_id]['coins']} coins.")
+        await message.reply_text(f"𝚂𝚞𝚌𝚌𝚎𝚜𝚜𝚏𝚞𝚕𝚕𝚢 𝚐𝚒𝚏𝚝𝚎𝚍 {coins_to_gift} 𝚌𝚘𝚒𝚗𝚜 𝚝𝚘 𝚞𝚜𝚎𝚛 {recipient_id}. 𝚈𝚘𝚞𝚛 𝚗𝚎𝚠 𝚋𝚊𝚕𝚊𝚗𝚌𝚎 𝚒𝚜 {user_data[user_id]['coins']} 𝚌𝚘𝚒𝚗𝚜.")
         
         try:
-            await client.send_message(recipient_id, f"You have received {coins_to_gift} coins from user {user_id}. Your new balance is {user_data[recipient_id]['coins']} coins!")
+            await client.send_message(recipient_id, f"𝚈𝚘𝚞 𝚑𝚊𝚟𝚎 𝚛𝚎𝚌𝚎𝚒𝚟𝚎𝚍 {coins_to_gift} 𝚌𝚘𝚒𝚗𝚜 𝚏𝚛𝚘𝚖 𝚞𝚜𝚎𝚛 {user_id}. 𝚈𝚘𝚞𝚛 𝚗𝚎𝚠 𝚋𝚊𝚕𝚊𝚗𝚌𝚎 𝚒𝚜 {user_data[recipient_id]['coins']} 𝚌𝚘𝚒𝚗𝚜!")
         except Exception as e:
-            await message.reply_text(f"Could not notify the recipient directly: {e}")
+            await message.reply_text(f"𝙲𝚘𝚞𝚕𝚍 𝚗𝚘𝚝 𝚗𝚘𝚝𝚒𝚏𝚢 𝚝𝚑𝚎 𝚛𝚎𝚌𝚒𝚙𝚒𝚎𝚗𝚝 𝚍𝚒𝚛𝚎𝚌𝚝𝚕𝚢: {e}")
 
     except (IndexError, ValueError):
-        await message.reply_text("Usage: /gift <user_id> <amount_of_coins>")
+        await message.reply_text("𝚄𝚜𝚊𝚐𝚎: /𝚐𝚒𝚏𝚝 <𝚞𝚜𝚎𝚛_𝚒𝚍> <𝚊𝚖𝚘𝚞𝚗𝚝_𝚘𝚏_𝚌𝚘𝚒𝚗𝚜>")
 
 
 @Client.on_message(filters.command("id") & filters.private)
 async def my_id(client: Client, message: Message):
     user_id = message.from_user.id
-    await message.reply_text(f"Your Telegram user ID is: {user_id}")
+    await message.reply_text(f"𝓨𝓸𝓾𝓻 𝓣𝓮𝓵𝓮𝓰𝓻𝓪𝓶 𝓾𝓼𝓮𝓻 𝓘𝓓 𝓲𝓼: {user_id}")
