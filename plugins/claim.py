@@ -23,8 +23,8 @@ async def generate_codes(client: Client, message: Message):
             redeem_codes[code] = {'coins': coins, 'claimed_by': []}
 
         # Display all generated codes to the admin
-        codes_text = "\n".join([f"Code: <code>{code}</code> | Coins: {coins}" for code in codes])
-        await message.reply_text(f"{num_codes} redeem code(s) generated!\n\n{codes_text}")
+        codes_text = "\n".join([f"𝙲𝚘𝚍𝚎: <code>{code}</code> | 𝙲𝚘𝚒𝚗𝚜: {coins}" for code in codes])
+        await message.reply_text(f"{num_codes} 𝚛𝚎𝚍𝚎𝚎𝚖 𝚌𝚘𝚍𝚎(𝚜) 𝚐𝚎𝚗𝚎𝚛𝚊𝚝𝚎𝚍!\n\n{codes_text}")
 
     except ValueError:
         await message.reply_text("𝙿𝚕𝚎𝚊𝚜𝚎 𝚞𝚜𝚎 𝚝𝚑𝚎 𝚏𝚘𝚛𝚖𝚊𝚝: /𝚐𝚎𝚗 <𝚌𝚘𝚒𝚗𝚜> <𝚗𝚞𝚖_𝚘𝚏_𝚌𝚘𝚍𝚎𝚜>.")
