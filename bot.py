@@ -1,3 +1,4 @@
+import os
 from pyrogram import Client
 from pyromod import listen
 from config import API_ID, API_HASH, BOT_TOKEN, TG_BOT_WORKERS
