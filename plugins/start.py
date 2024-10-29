@@ -13,7 +13,7 @@ async def start_message(client: Client, message: Message, is_callback: bool = Fa
     username = message.from_user.username or None  # Handle cases where username may be None
 
     # Add the user to user_data
-    await add_user(user_id, username)
+    await add_user(user_id)
 
     buttons = [
         [
