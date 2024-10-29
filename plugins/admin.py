@@ -125,3 +125,19 @@ async def remove_coins(client: Client, message: Message):
 
     except ValueError:
         await message.reply_text("❗ 𝙸𝚗𝚟𝚊𝚕𝚒𝚍 𝚞𝚜𝚎𝚛 𝙸𝙳 𝚘𝚛 𝚌𝚘𝚒𝚗 𝚊𝚖𝚘𝚞𝚗𝚝.")
+
+
+
+@Client.on_message(filters.command("remaining_accounts") & filters.private & filters.user(ADMINS))
+async def check_remaining_accounts(client: Client, message: Message):
+    """Check how many accounts are left in the list."""
+    remaining_count = len(premium_accounts)
+    
+    if remaining_count > 0:
+        await message.reply_text(
+            f"📊 𝙲𝚞𝚛𝚛𝚎𝚗𝚝 𝚁𝚎𝚖𝚊𝚒𝚗𝚒𝚗𝚐 𝙰𝚌𝚌𝚘𝚞𝚗𝚝𝚜: {remaining_count}\n"
+            "𝚃𝚑𝚎𝚛𝚎 𝚊𝚛𝚎 𝚜𝚝𝚒𝚕𝚕 𝚙𝚛𝚎𝚖𝚒𝚞𝚖 𝚊𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚕𝚎𝚏𝚝 𝚏𝚘𝚛 𝚞𝚜𝚎𝚛𝚜 𝚝𝚘 𝚌𝚕𝚊𝚒𝚖."
+        )
+    else:
+        await message.reply_text("🚫 𝙰𝚕𝚕 𝚙𝚛𝚎𝚖𝚒𝚞𝚖 𝚊𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚑𝚊𝚟𝚎 𝚋𝚎𝚎𝚗 𝚌𝚕𝚊𝚒𝚖𝚎𝚍. 𝙽𝚘𝚗𝚎 𝚊𝚛𝚎 𝚊𝚟𝚊𝚒𝚕𝚊𝚋𝚕𝚎 𝚏𝚘𝚛 𝚌𝚕𝚊𝚒𝚖 𝚊𝚝 𝚝𝚑𝚎 𝚖𝚘𝚖𝚎𝚗𝚝.")
+
